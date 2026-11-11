@@ -1,0 +1,238 @@
+/* ==========================================================
+   Laura Lovrien portfolio: shared styles for all pages
+   Mobile-first: base styles are for phones, wider screens
+   get small upgrades in the @media blocks at the bottom.
+   ========================================================== */
+
+:root {
+  --sky-top: #5b93ee;
+  --sky-bottom: #cfe1fb;
+  --cream: #faf5e9;
+  --navy: #1b3a6b;
+  --navy-dark: #142b50;
+  --ink: #0d1b2a;
+  --card: #ffffff;
+  --accent: #2f6fd1;
+  --accent-dark: #1f56ab;
+  --muted: #4a5a6a;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* stops iPhones from resizing text on rotate */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+img, svg { max-width: 100%; height: auto; }
+
+a { color: var(--accent); }
+
+/* Lets keyboard users jump past the navigation */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 8px;
+  z-index: 10;
+}
+.skip-link:focus { left: 8px; }
+
+/* ---------- Header / hero ---------- */
+.hero {
+  text-align: center;
+  padding: 48px 16px 40px;
+  /* Photo first; the gradient shows if hero.jpg is missing or still loading */
+  background:
+    url("hero.jpg") center / cover no-repeat,
+    linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 9vw, 4.2rem);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.hero .roles {
+  margin: 12px 0 0;
+  font-size: clamp(0.95rem, 3.6vw, 1.45rem);
+  font-weight: 700;
+}
+
+.hero .tagline {
+  margin: 16px auto 0;
+  max-width: 36rem;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  background: #fff;
+  outline: 2px solid var(--ink);
+}
+
+.nav a[aria-current="page"] {
+  background: var(--navy);
+  color: #fff;
+}
+
+/* ---------- Page sections ---------- */
+section { padding: 48px 16px; }
+.wrap { max-width: 960px; margin: 0 auto; }
+h2 { margin: 0 0 8px; font-size: 1.6rem; line-height: 1.25; }
+.lead { color: var(--muted); margin: 0 0 28px; }
+
+/* ---------- Buttons ---------- */
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.button:hover,
+.button:focus-visible { background: var(--accent-dark); }
+
+.button--ghost {
+  background: transparent;
+  color: var(--accent-dark);
+  border: 2px solid var(--accent);
+}
+.button--ghost:hover,
+.button--ghost:focus-visible { background: #e3ecfb; }
+
+/* ---------- About (home page) ---------- */
+#about p { max-width: 42rem; }
+
+/* ---------- Projects page ---------- */
+.grid {
+  display: grid;
+  /* min(...) keeps cards from overflowing very narrow phones */
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 2px 10px rgba(13, 27, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+.card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+.card p { margin: 0 0 16px; flex: 1; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.tags li {
+  font-size: 0.8rem;
+  background: #e3ecfb;
+  color: #1d3f78;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.badge.featured { background: var(--navy); color: #fff; }
+.badge.wip { background: #fdeccd; color: #7a4a00; }
+
+.links { display: flex; gap: 16px; flex-wrap: wrap; font-weight: 600; }
+.links a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* ---------- Contact page ---------- */
+.contact { text-align: center; }
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 1.1rem;
+}
+.contact-list a {
+  display: inline-block;
+  padding: 10px 0;
+  overflow-wrap: anywhere;   /* long addresses wrap instead of scrolling sideways */
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--navy-dark);
+  color: #b9c8e4;
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Larger screens ---------- */
+@media (min-width: 700px) {
+  .hero { padding: 72px 20px 56px; }
+  section { padding: 64px 20px; }
+  h2 { font-size: 1.8rem; }
+  .grid { gap: 24px; }
+  .contact-list { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

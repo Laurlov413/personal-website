@@ -73,5 +73,38 @@
   </main>
 
   <footer>&copy; 2026 Laura Lovrien</footer>
+
+  <dialog id="photo-viewer" aria-label="Enlarged photo">
+  <img id="photo-viewer-img" src="" alt="">
+  <button type="button" class="viewer-close" aria-label="Close photo">&times;</button>
+</dialog>
+
+<script>
+  const viewer = document.getElementById('photo-viewer');
+  const viewerImg = document.getElementById('photo-viewer-img');
+
+  document.querySelectorAll('.about-photos img').forEach((img) => {
+    img.tabIndex = 0;                      // lets keyboard users reach the photo
+    img.setAttribute('role', 'button');
+
+    const open = () => {
+      viewerImg.src = img.dataset.full || img.currentSrc || img.src;
+      viewerImg.alt = img.alt;
+      viewer.showModal();
+    };
+
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
+    });
+  });
+
+  // A tap or click anywhere on the enlarged view closes it (Esc works automatically)
+  viewer.addEventListener('click', () => viewer.close());
+</script>
+
 </body>
 </html>

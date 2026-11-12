@@ -30,7 +30,13 @@ body {
   color: var(--ink);
   background: var(--cream);
   line-height: 1.6;
+  min-height: 100vh;
+  min-height: 100dvh;   /* accounts for the mobile browser address bar */
+  display: flex;
+  flex-direction: column;
 }
+
+main { flex: 1; }
 
 img, svg { max-width: 100%; height: auto; }
 
